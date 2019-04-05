@@ -1,0 +1,8 @@
+.submit-button{
+    display: flex;
+    justify-content: center;
+}
+.submit-button button{
+    margin: 10px;
+    width: 100px;
+}
