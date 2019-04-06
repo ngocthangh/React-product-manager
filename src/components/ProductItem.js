@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductItem extends Component {
     render() {
@@ -17,11 +18,20 @@ class ProductItem extends Component {
                 <td>{product.stock}</td>
                 <td>{labelElm}</td>
                 <td>
-                    <button type="button" className="btn btn-warning mr-10">Sửa</button>
-                    <button type="button" className="btn btn-danger">Xóa</button>
+                    <Link type="button" className="btn btn-warning mr-10" to={{
+                            pathname: `/products/${product.id}/edit`,
+                            state: { product }
+                        }}>Sửa</Link>
+                    <button type="button" className="btn btn-danger" onClick={() => this.onDelete(product.id)}>Xóa</button>
                 </td>
             </tr>
         );
+    }
+    onDelete(id) {
+        // eslint-disable-next-line no-restricted-globals
+        if(confirm('Bạn thực sự muốn xóa product này?')) {
+            this.props.onDeleteItem(id);
+        }
     }
 }
 

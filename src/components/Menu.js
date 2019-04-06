@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 
+
 const menus = [
     {
         name: 'Trang Chủ',
@@ -47,7 +48,7 @@ class Menu extends Component {
                     </ul>
 
                 </div>
-                <button type="button" className="btn btn-primary">Thêm Sản Phẩm</button>
+                <Link className="btn btn-primary" to='/products/add'>Thêm Sản Phẩm</Link>
             </nav>
         );
     }
@@ -57,5 +58,6 @@ class Menu extends Component {
         ))
     }
 }
+
 
 export default Menu;

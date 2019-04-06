@@ -13,17 +13,17 @@ const routes = [
         component: ()=><HomePage/>
     },
     {
-        path: '/products/:id',
+        path: '/products/detail/:id',
         exact: false,
         component: ()=><ProductDetail/>
     },{
         path: '/products/:id/edit',
         exact: false,
-        component: ()=><ProductActionPage/>
+        component: ({location, history})=><ProductActionPage location={location} history={history}/>
     },{
         path: '/products/add',
         exact: false,
-        component: ()=><ProductActionPage/>
+        component: ({history})=><ProductActionPage history={history}/>
     },{
         path: '/about',
         exact: false,

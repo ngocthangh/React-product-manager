@@ -17,13 +17,16 @@ class ProductList extends Component {
         console.log(this.props.products);
         if(this.props.products){
             result = this.props.products.map((product, index) => (
-                <ProductItem key={product.id} product={product} index={index}/>
+                <ProductItem key={product.id} product={product} index={index} onDeleteItem={this.onDeleteItem}/>
             ))
         }
         return result;
     }
     componentDidMount(){
         this.props.loadProducts();
+    }
+    onDeleteItem = (id) => {
+        this.props.deleteProduct(id);
     }
 }
 
@@ -36,8 +39,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        loadProducts: ()=>{
+        loadProducts: () => {
             dispatch(Actions.actListProducts());
+        },
+        deleteProduct: (id) => {
+            dispatch(Actions.actDeleteProduct(id));
         }
     }
 }
