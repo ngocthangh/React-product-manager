@@ -11,9 +11,21 @@ class ProductItem extends Component {
                 <td>{index + 1}</td>
                 <td>{product.id}</td>
                 <th>
-                    <img className="table-img" src={product.image} alt={product.name} />
+                    <Link to={{
+                            pathname: `/products/detail/${product.id}/edit`,
+                            state: { product }
+                        }}>
+                        <img className="table-img" src={product.image} alt={product.name} />
+                    </Link>
                 </th>
-                <td>{product.name}</td>
+                <td>
+                    <Link to={{
+                            pathname: `/products/detail/${product.id}/edit`,
+                            state: { product }
+                        }}>
+                        {product.name}
+                    </Link>
+                </td>
                 <td>{product.price}</td>
                 <td>{product.stock}</td>
                 <td>{labelElm}</td>

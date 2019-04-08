@@ -21,6 +21,22 @@ export const actListProducts = () => {
     }
 }
 
+export const actSearchProducts = (searchKey) => {
+    return {
+        type: Types.SEARCH_PRODUCTS,
+        searchKey
+    }
+}
+
+export const actSortProducts = (sort) => {
+    console.log(sort);
+    return {
+        type: Types.SORT_PRODUCTS,
+        by: sort.by,
+        value: sort.value
+    }
+}
+
 export const actAddProduct = (product) => {
     return dispatch => {
         callApi(Config.Endpoint.ListProduct, 'POST', product).then(res => {

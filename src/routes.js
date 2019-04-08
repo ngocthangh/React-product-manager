@@ -15,7 +15,7 @@ const routes = [
     {
         path: '/products/detail/:id',
         exact: false,
-        component: ()=><ProductDetail/>
+        component: ({location, history})=><ProductDetail location={location} history={history}/>
     },{
         path: '/products/:id/edit',
         exact: false,

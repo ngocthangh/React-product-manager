@@ -14,12 +14,36 @@ class ProductList extends Component {
     }
     showProducts(){
         let result = null;
+        let { products } = this.props;
         console.log(this.props.products);
-        if(this.props.products){
-            result = this.props.products.map((product, index) => (
+        if(products){
+            let searchProducts = this.search(products);
+            let sortProducts = this.sort(searchProducts);
+            console.log(sortProducts)
+            result = sortProducts.map((product, index) => (
                 <ProductItem key={product.id} product={product} index={index} onDeleteItem={this.onDeleteItem}/>
             ))
         }
+        return result;
+    }
+    search_sort() {
+        let { products } = this.props;
+        let resSearch = this.search(products);
+        let resSort = this.sort(resSearch);
+        return resSort;
+    }
+    search(products) {
+        let result = products;
+        let { searchKey } = this.props;
+        console.log(searchKey);
+        if(searchKey !== '') {
+            result = products.filter(product => product.name.toLowerCase().indexOf(searchKey.toLowerCase()) >= 0);
+        }
+        return result;
+    }
+    sort(products) {
+        let { sort } = this.props;
+        let result = products.sort((p1, p2) => p1[sort.by] > p2[sort.by] ? sort.value: -sort.value);
         return result;
     }
     componentDidMount(){
@@ -33,7 +57,9 @@ class ProductList extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+        searchKey: state.search,
+        sort: state.sort
     }
 }
 

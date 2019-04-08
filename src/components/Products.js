@@ -1,9 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import PaginationReact from './PaginationReact';
 
 class Products extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { pageCount: 20, perPage: 10, offset: 1 };
+    }
+    handlePageClick = (data) => {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * this.state.perPage);
+
+        this.setState({ offset: offset }, () => {
+            console.log(offset);
+        });
+    }
     render() {
         return (
-            <table className="table mt-20" >
+            <Fragment>
+                <table className="table mt-20" >
                     <thead>
                         <tr>
                             <th>STT</th>
@@ -20,6 +34,8 @@ class Products extends Component {
                         {this.props.children}
                     </tbody>
                 </table>
+                <PaginationReact/>
+            </Fragment>
         );
     }
 }

@@ -41,7 +41,7 @@ class Menu extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                <a className="navbar-brand" href="http">Products Manager</a>
+                <a className="navbar-brand" href="/">Products Manager</a>
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         { this.showMenus() }
